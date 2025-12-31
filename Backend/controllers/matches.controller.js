@@ -24,3 +24,12 @@ exports.getMatchesByRound = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getAllMatches = async (req, res) => {
+  try {
+    const matches = await Match.find({});
+    res.json(matches);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
