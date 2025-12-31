@@ -9,7 +9,7 @@ const rawData = JSON.parse(fs.readFileSync(rawDataPath, "utf-8"));
 const REQUIRED_ROUNDS = ["QF", "SF", "Final"];
 
 // filter logic
-const filteredMatches = Object.values(rawData)
+const filteredMatches = Object.values(rawData) 
   .map(item => item.match)
   .filter(match =>
     match.eventName === "MS" &&
