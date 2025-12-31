@@ -1,17 +1,10 @@
-
-
-
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.get('/',(req,res) => {
-    console.log('this is home page');
-})
+app.use("/api/matches", require("./routes/matches.routes"));
 
-
-let PORT = 8382;
-
-app.listen(PORT,()=> {
-    console.log(`server is start port ${PORT}`);
-})
+module.exports = app;
