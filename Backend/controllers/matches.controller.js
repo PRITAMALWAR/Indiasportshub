@@ -2,18 +2,25 @@ const Match = require("../models/Match");
 
 exports.saveMatches = async (req, res) => {
   try {
+    await Match.deleteMany({});
     const matches = await Match.insertMany(req.body);
-    res.json(matches);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+
+    res.status(201).json({
+      message: "Match data saved successfully",
+      count: matches.length,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
 exports.getMatchesByRound = async (req, res) => {
   try {
-    const matches = await Match.find({ roundName: req.params.round });
+    const { round } = req.params;
+    const matches = await Match.find({ roundName: round });
+
     res.json(matches);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
