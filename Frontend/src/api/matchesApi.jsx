@@ -11,3 +11,8 @@ export const getMatchesByRound = async (round) => {
   const response = await axios.get(`${API_BASE_URL}/${round}`);
   return response.data;
 };
+
+export const scrapeLatest = async () => {
+  const response = await axios.get(`${API_BASE_URL}/scrape`);
+  return response.data;
+};
